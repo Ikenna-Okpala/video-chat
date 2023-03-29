@@ -14,6 +14,7 @@ import {
   ChatWindow,
   DevicesContainer,
   EndButton,
+  InvisibleLink,
   MicButton,
   MyUserNameContainer,
   MyVideo,
@@ -128,6 +129,22 @@ const Room = () => {
 
   useEffect(() => {
     updateUsername(sessionStorage.getItem("username"));
+
+    if (sessionStorage.getItem("reload") === "true") {
+      navigate("/");
+    }
+
+    const handleOnBeforeReload = (event) => {
+      event.preventDefault();
+      sessionStorage.setItem("reload", "true");
+    };
+
+    window.addEventListener("beforeunload", handleOnBeforeReload);
+
+    return () => {
+      sessionStorage.removeItem("reload");
+      window.removeEventListener("beforeunload", handleOnBeforeReload);
+    };
   }, []);
 
   socket.on("video-state", (isVideoOn, isMicOn) => {

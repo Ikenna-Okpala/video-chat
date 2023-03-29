@@ -6,6 +6,7 @@ import LabelledInput from "../input/input.component";
 import { NextButton, ProfileContainer } from "./profile.component.style";
 
 const Profile = () => {
+  console.log("Profile page");
   const [usernameText, setUsername] = useState("");
 
   const navigate = useNavigate();
