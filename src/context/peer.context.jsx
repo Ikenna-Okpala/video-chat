@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 import { Peer } from "peerjs";
 const peer = new Peer({
-  host: "localhost",
-  port: "3002",
+  host: "vc-chat-peer-server.glitch.me",
   path: "/peerjs",
+  secure: true,
 });
 
 export const PeerContext = createContext({
@@ -13,7 +13,6 @@ export const PeerContext = createContext({
 
 export const PeerProvider = ({ children }) => {
   const [userId, setUserId] = useState("");
-
   peer.on("open", (id) => {
     setUserId(id);
   });

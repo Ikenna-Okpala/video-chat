@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import {
+  BLUE_GREEN,
   ELEMENT_BACKGROUND_COLOR,
   ELEMENT_TEXT_COLOR,
+  GREY,
   LIGHT_GREEN,
+  MILK,
+  MILK_DARK,
+  MILK_LIGHT,
   TEXT_COLOR,
 } from "../../color/color";
 
@@ -19,7 +24,7 @@ export const MessageContainer = styled.div`
 
 export const MessageHeader = styled.span`
   font-size: 0.8rem;
-  color: ${ELEMENT_TEXT_COLOR};
+  color: ${GREY};
   font-weight: 500;
 `;
 
@@ -31,7 +36,7 @@ export const MessageBody = styled.div`
 
   border-radius: 30px;
 
-  background-color: ${LIGHT_GREEN};
+  background-color: ${({ isUser }) => (isUser ? BLUE_GREEN : MILK_LIGHT)};
 `;
 
 export const MessageParagraph = styled.p`

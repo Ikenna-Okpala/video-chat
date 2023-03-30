@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { ELEMENT_BACKGROUND_COLOR, TEXT_COLOR } from "../../color/color";
+import {
+  BLUE_GREEN,
+  ELEMENT_BACKGROUND_COLOR,
+  GREY,
+  TEXT_COLOR,
+  WHITE,
+} from "../../color/color";
 import { CustomizedButton } from "../button/button.style";
 
 export const ProfileContainer = styled.div`
@@ -19,5 +25,9 @@ export const ProfileContainer = styled.div`
 export const NextButton = styled(CustomizedButton)`
   padding: 0px 20px 0px 20px;
   background-color: ${({ usernameLength }) =>
-    usernameLength === 0 ? TEXT_COLOR : ELEMENT_BACKGROUND_COLOR};
+    usernameLength === 0 ? WHITE : BLUE_GREEN};
+
+  span {
+    color: ${GREY};
+  }
 `;

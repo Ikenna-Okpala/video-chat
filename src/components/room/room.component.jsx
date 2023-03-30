@@ -45,6 +45,10 @@ const createVideoStream = (video, stream, option) => {
   }
 };
 
+const releaseVideoResources = (stream) => {
+  stream.getTracks().forEach((track) => track.stop());
+};
+
 const Room = () => {
   const { peer } = useContext(PeerContext);
 
@@ -78,6 +82,8 @@ const Room = () => {
 
   const [remoteStream, setRemoteStream] = useState(null);
 
+  const [localStream, setLocalStream] = useState(null);
+
   //useEffect fires after first render
   const callPeer = (myStream, otherUserId) => {
     const call = peer.call(otherUserId, myStream);
@@ -106,6 +112,7 @@ const Room = () => {
         video: true,
       })
       .then((myStream) => {
+        setLocalStream(myStream);
         createVideoStream(myVideoRef.current, myStream, "local");
 
         socket.on("user-connected", (otherUsername, otherUserId) => {
@@ -128,22 +135,20 @@ const Room = () => {
   }, [isVideoOn, isMicOn]);
 
   useEffect(() => {
+    //useEffect return fucntion runs before re renders
+
     updateUsername(sessionStorage.getItem("username"));
 
     if (sessionStorage.getItem("reload") === "true") {
+      sessionStorage.removeItem("reload");
       navigate("/");
+    } else {
+      sessionStorage.setItem("reload", "true");
     }
 
-    const handleOnBeforeReload = (event) => {
-      event.preventDefault();
-      sessionStorage.setItem("reload", "true");
-    };
-
-    window.addEventListener("beforeunload", handleOnBeforeReload);
-
     return () => {
+      console.log("cleaning...");
       sessionStorage.removeItem("reload");
-      window.removeEventListener("beforeunload", handleOnBeforeReload);
     };
   }, []);
 
@@ -195,10 +200,13 @@ const Room = () => {
   };
 
   const onEndcallClickedHandler = () => {
-    socket.emit("end-call");
-    socket.on("disconnect", (reason) => {
-      navigate("/home");
-    });
+    socket.disconnect();
+    peer.destroy();
+    releaseVideoResources(localStream);
+    if (remoteStream) {
+      releaseVideoResources(remoteStream);
+    }
+    navigate("/");
   };
 
   return (

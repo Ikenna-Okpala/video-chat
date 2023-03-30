@@ -1,5 +1,10 @@
 import styled from "styled-components";
-import { ELEMENT_BACKGROUND_COLOR, TEXT_COLOR } from "../../color/color";
+import {
+  BLUE_GREEN,
+  ELEMENT_BACKGROUND_COLOR,
+  TEXT_COLOR,
+  WHITE,
+} from "../../color/color";
 
 export const HomeContainer = styled.div`
   width: 100vw;
@@ -28,7 +33,6 @@ export const RowContainer = styled.div`
 export const ClickableText = styled.span`
   font-size: 18px;
 
-  color: ${({ length }) =>
-    length === 0 ? TEXT_COLOR : ELEMENT_BACKGROUND_COLOR};
+  color: ${({ length }) => (length === 0 ? WHITE : BLUE_GREEN)};
   cursor: ${({ length }) => (length === 0 ? "default" : "pointer")};
 `;

@@ -23,7 +23,7 @@ const Home = () => {
   const { userId } = useContext(PeerContext);
 
   const client = axios.create({
-    baseURL: " http://localhost:3001/",
+    baseURL: "https://vc-chat.glitch.me/",
   });
 
   const [meetingId, setMeetingId] = useState("");
@@ -55,6 +55,12 @@ const Home = () => {
     }
   };
 
+  const onHandleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      onJoinClickedHandler();
+    }
+  };
+
   return (
     <HomeContainer>
       <RowContainer>
@@ -69,6 +75,7 @@ const Home = () => {
           value={meetingId}
           onChange={onChange}
           label="Enter a meeting code"
+          onKeyDown={onHandleKeyDown}
         />
 
         <ClickableText length={meetingId.length} onClick={onJoinClickedHandler}>

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { io } from "socket.io-client";
-const socket = io("http://localhost:3001");
+const socket = io("https://vc-chat.glitch.me/");
 
 export const SocketContext = createContext({
   socket: socket,

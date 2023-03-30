@@ -6,7 +6,6 @@ import LabelledInput from "../input/input.component";
 import { NextButton, ProfileContainer } from "./profile.component.style";
 
 const Profile = () => {
-  console.log("Profile page");
   const [usernameText, setUsername] = useState("");
 
   const navigate = useNavigate();
@@ -28,12 +27,19 @@ const Profile = () => {
     }
   };
 
+  const onHandleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      onNextClicked();
+    }
+  };
+
   return (
     <ProfileContainer>
       <LabelledInput
         value={usernameText}
         onChange={onUserNameChange}
-        label="Enter a user name"
+        label="Enter a username"
+        onKeyDown={onHandleKeyDown}
       />
 
       <NextButton

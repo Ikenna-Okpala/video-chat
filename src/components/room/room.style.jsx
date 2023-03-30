@@ -1,16 +1,22 @@
 import styled from "styled-components";
 import {
+  BLUE_GREEN,
   CHAT_BOX_COLOR,
   CHAT_ICON_COLOR,
   CHAT_WINDOW_COLOR,
   DARK_RED,
   ELEMENT_BACKGROUND_COLOR,
   ELEMENT_TEXT_COLOR,
+  GREY,
   LIGHT_GREEN,
+  MILK,
+  MILK_DARK,
+  MILK_LIGHT,
   ROOM_BAR_COLOR,
   SITE_BACKGROUND_COLOR,
   TEXT_COLOR,
   VIDEO_VIEW_COLOR,
+  WHITE,
 } from "../../color/color";
 
 export const RoomContainer = styled.div`
@@ -33,7 +39,7 @@ export const RowContainer = styled.div`
 `;
 
 export const VideoView = styled.div`
-  width: 75vw;
+  width: 72vw;
   height: 95vh;
 
   display: flex;
@@ -52,13 +58,13 @@ export const RoomFooter = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: ${SITE_BACKGROUND_COLOR};
+  background: transparent;
 
   column-gap: 20px;
 `;
 
 export const ChatWindow = styled.div`
-  width: 25vw;
+  width: 28vw;
   height: 95vh;
 
   box-sizing: border-box;
@@ -70,7 +76,7 @@ export const ChatWindow = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 30px 30px 0 0;
-  background-color: ${TEXT_COLOR};
+  background-color: ${WHITE};
 
   margin-top: 5vh;
 `;
@@ -114,7 +120,7 @@ export const VideoButton = styled.button`
   cursor: pointer;
 
   flex-direction: column;
-  background-color: ${({ on }) => (on ? ELEMENT_BACKGROUND_COLOR : DARK_RED)};
+  background-color: ${({ on }) => (on ? BLUE_GREEN : DARK_RED)};
   border-radius: 15px;
   border: none;
 
@@ -122,7 +128,7 @@ export const VideoButton = styled.button`
   align-items: center;
 
   svg {
-    fill: ${ELEMENT_TEXT_COLOR};
+    fill: ${GREY};
   }
 
   transition: 0.5s;
@@ -133,11 +139,11 @@ export const VideoButton = styled.button`
 `;
 
 export const MicButton = styled(VideoButton)`
-  background-color: ${({ on }) => (on ? ELEMENT_BACKGROUND_COLOR : DARK_RED)};
+  background-color: ${({ on }) => (on ? BLUE_GREEN : DARK_RED)};
 `;
 
 export const ShareButton = styled(VideoButton)`
-  background-color: ${ELEMENT_BACKGROUND_COLOR};
+  background-color: ${BLUE_GREEN};
 `;
 
 export const EndButton = styled(VideoButton)`
@@ -164,30 +170,29 @@ export const ChatContent = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${CHAT_BOX_COLOR};
+    background-color: ${MILK};
     border-radius: 10px;
   }
 `;
 
 export const ChatBox = styled.div`
   width: 100%;
-  height: 8%;
+  height: 12%;
 
   display: flex;
 
-  background-color: ${CHAT_BOX_COLOR};
+  background-color: ${MILK_LIGHT};
 
   border-radius: 30px;
 
   flex-direction: row;
 
   align-items: center;
-
-  column-gap: 15px;
+  justify-content: space-between;
 
   svg {
-    fill: ${({ chatLength }) =>
-      chatLength === 0 ? CHAT_ICON_COLOR : LIGHT_GREEN};
+    fill: ${({ chatLength }) => (chatLength === 0 ? MILK_DARK : BLUE_GREEN)};
+    margin-right: 20px;
 
     cursor: pointer;
   }
@@ -197,7 +202,7 @@ export const ChatInput = styled.input`
   width: 80%;
   height: 100%;
   box-sizing: border-box;
-  color: ${ELEMENT_TEXT_COLOR};
+  color: ${GREY};
 
   padding-left: 15px;
 
@@ -238,7 +243,7 @@ export const MyUserNameContainer = styled.div`
   justify-content: center;
 
   span {
-    font-size: 3rem;
-    color: ${TEXT_COLOR};
+    font-size: 4rem;
+    color: ${WHITE};
   }
 `;

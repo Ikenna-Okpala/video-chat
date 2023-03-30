@@ -14,7 +14,7 @@ const Message = ({ sender, message }) => {
     <MessageContainer>
       <MessageHeader>{username === sender ? "You" : sender}</MessageHeader>
 
-      <MessageBody>
+      <MessageBody isUser={username === sender}>
         <MessageParagraph>{message}</MessageParagraph>
       </MessageBody>
     </MessageContainer>

@@ -1,14 +1,17 @@
 import styled from "styled-components";
 import {
+  BLACK,
+  BLUE_GREEN,
   ELEMENT_BACKGROUND_COLOR,
   ELEMENT_TEXT_COLOR,
+  GREY,
 } from "../../color/color";
 
 export const CustomizedButton = styled.button`
   height: ${({ height }) => `${height}px`};
   font-size: 15px;
-  background-color: ${ELEMENT_BACKGROUND_COLOR};
-  color: ${ELEMENT_TEXT_COLOR};
+  background-color: ${BLUE_GREEN};
+  color: ${GREY};
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -25,10 +28,10 @@ export const CustomizedButton = styled.button`
   }
 
   svg {
-    fill: ${ELEMENT_TEXT_COLOR};
+    fill: ${GREY};
   }
 
   span {
-    fill: ${ELEMENT_TEXT_COLOR};
+    fill: ${GREY};
   }
 `;

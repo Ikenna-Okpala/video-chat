@@ -8,22 +8,22 @@ import { UsernameProvider } from './context/userContext';
 import { SocketProvider } from './context/socket.context';
 import { PeerProvider } from './context/peer.context';
 
+//reactstrict mode causes app to render twice
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <SocketProvider>
-        <UsernameProvider>
-          <PeerProvider>
-            <App />
-          </PeerProvider>
 
-        </UsernameProvider>
-      </SocketProvider>
+  <BrowserRouter>
+    <SocketProvider>
+      <UsernameProvider>
+        <PeerProvider>
+          <App />
+        </PeerProvider>
 
-    </BrowserRouter>
+      </UsernameProvider>
+    </SocketProvider>
 
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
